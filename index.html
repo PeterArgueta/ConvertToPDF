@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Une, divide y organiza tus PDF gratis. Tus archivos se procesan en tu dispositivo, sin subirlos a un servidor."><meta name="theme-color" content="#155eaa"><title>ConvertToPDF — Herramientas PDF</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23155eaa'/%3E%3Ctext x='32' y='39' text-anchor='middle' fill='white' font-family='Arial' font-size='20'%3EPDF%3C/text%3E%3C/svg%3E"></head>
+<body>
+<header><div class="header-inner"><a class="brand" href="./" aria-label="ConvertToPDF, inicio">ConvertTo<span>PDF</span></a><span class="header-note">Herramientas para tus documentos</span></div></header>
+<main>
+<section class="intro"><span class="eyebrow">HERRAMIENTAS PDF</span><h1>Tus documentos, en orden.</h1><p>Une, divide y organiza tus PDF en pocos pasos.</p></section>
+<nav class="tools" aria-label="Selecciona una herramienta">
+<button class="tool" data-mode="merge" aria-pressed="true"><span class="tool-icon" aria-hidden="true">▤</span><strong>Unir PDF</strong><span>Varios documentos, un solo archivo.</span></button>
+<button class="tool" data-mode="split" aria-pressed="false"><span class="tool-icon" aria-hidden="true">✂</span><strong>Dividir PDF</strong><span>Extrae las páginas que necesitas.</span></button>
+<button class="tool" data-mode="organize" aria-pressed="false"><span class="tool-icon" aria-hidden="true">▦</span><strong>Organizar páginas</strong><span>Cambia el orden, gira o elimina.</span></button>
+</nav>
+<section class="workspace" aria-labelledby="workspace-title">
+<div class="workspace-top"><div><h2 id="workspace-title">Unir documentos</h2><p id="workspace-description">Agrega tus PDF y elige el orden de los archivos.</p></div><span id="count" class="count" hidden></span></div>
+<label class="dropzone" id="dropzone" for="files"><span class="upload-icon" aria-hidden="true">↑</span><strong id="upload-label">Seleccionar archivos PDF</strong><span>o arrástralos aquí</span><small>Hasta 50 MB en total y 300 páginas por sesión</small><input id="files" type="file" accept="application/pdf,.pdf" multiple></label>
+<div class="session-actions" id="session-actions" hidden><button id="add" class="secondary">+ Agregar PDF</button><button id="reset" class="text-button">Limpiar sesión</button></div>
+<div id="items" class="items" aria-label="Documentos y páginas"></div>
+<div id="split-options" class="split-options" hidden><label for="ranges">Páginas a extraer</label><input id="ranges" type="text" placeholder="Ejemplo: 1-3, 5, 8" autocomplete="off" inputmode="text"><small>Se guardarán juntas en un nuevo PDF, en el orden indicado.</small></div>
+<div class="export-row" id="export-row" hidden><div class="filename-field"><label for="filename">Nombre del archivo</label><input id="filename" value="documentos-unidos" maxlength="100"><span>.pdf</span></div><button id="process" class="primary">Unir PDF</button></div>
+<div id="status" role="status" aria-live="polite"></div><div id="error" role="alert" hidden></div><div id="result" hidden><a id="download" class="primary" download>Descargar PDF</a><span>Tu archivo está listo. Puedes descargarlo de nuevo.</span></div>
+</section>
+<div class="trust"><span>✓ Procesamiento en tu dispositivo</span><span>Sin registro · Sin subir documentos</span></div>
+<details class="privacy"><summary>Privacidad y compatibilidad</summary><p>Los documentos permanecen en la memoria de tu navegador; no se envían a un servidor ni se guardan como historial. Al limpiar la sesión o cerrar la página se liberan. Los PDF protegidos con contraseña no son compatibles. Editar un PDF firmado altera su firma digital. Esta versión está orientada a documentos de texto e imágenes; comprueba el resultado si contiene formularios, marcadores o anotaciones.</p></details>
+</main><footer><span>© 2026 ConvertToPDF</span><span>Unir · Dividir · Organizar</span></footer>
+<script type="module" src="/src/main.js"></script>
+</body></html>
