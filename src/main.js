@@ -72,6 +72,7 @@ function render() {
     }
     $('items').append(article);
   });
+  if (busy) setBusy(true);
 }
 async function thumbnails(source) {
   let doc;
