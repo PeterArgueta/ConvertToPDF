@@ -1,38 +1,61 @@
 # ConvertToPDF
 
-Herramientas PDF en español: unir archivos, extraer páginas por rangos y organizar páginas (orden, giro y eliminación). Interfaz adaptable a teléfonos. Proyecto independiente; no modifica ConvertToMap.
+Aplicación web para **unir, extraer y reorganizar páginas de archivos PDF directamente en el navegador**. El procesamiento se realiza en el dispositivo del usuario, sin transferir el documento a un servidor.
 
-## Desarrollo
+## Funcionalidades
+
+- Unir múltiples documentos PDF.
+- Extraer páginas seleccionadas por rangos en un único PDF.
+- Reordenar, girar y eliminar páginas.
+- Previsualizar páginas mediante miniaturas.
+- Descargar el documento resultante.
+
+## Diseño técnico
+
+Aplicación estática construida con **Vite**. Utiliza **PDF.js (`pdfjs-dist`)** para la lectura y representación de miniaturas y **pdf-lib** para la manipulación de documentos. Al no requerir un backend, puede desplegarse en un alojamiento de archivos estáticos.
+
+El procesamiento permanece en memoria. Las operaciones se realizan sobre las páginas y no convierten todo el documento a imágenes.
+
+## Desarrollo local
 
 Requiere Node.js 22 o posterior.
 
-```sh
+```bash
 npm ci
 npm run dev
 ```
 
-```sh
+**Validación y compilación**
+
+```bash
 npm test
 npm run build
 npm run preview
 ```
 
-`dist/` contiene el sitio estático; las dependencias y el worker se incluyen en la compilación. No requiere CDN, API, cuenta de usuario ni base de datos.
+Las pruebas se encuentran en `tests/`. La compilación genera `dist/`.
 
-## GitHub Pages
+## Despliegue
 
-El workflow publica `dist/` al hacer push a `main`. En Settings → Pages, seleccionar GitHub Actions como origen antes de ejecutarlo. `base: './'` permite servirlo bajo el nombre del repositorio sin dominio propio. No hay integración con ConvertToMap todavía.
+El workflow de `.github/workflows/` publica `dist/` mediante GitHub Pages tras cambios en `main`. Para habilitarlo, selecciona **GitHub Actions** como origen de Pages. La configuración `base: './'` permite publicar el sitio bajo la ruta del repositorio.
 
-## Privacidad y alcance
+Este proyecto es independiente y no modifica ConvertToMap.
 
-Los documentos se procesan en memoria, sin subidas, almacenamiento persistente ni analítica. Límite inicial de 50 MB y 300 páginas por sesión, sujeto a la memoria disponible del equipo. Se rechazan PDF cifrados y se muestran errores de lectura. Las miniaturas se generan con PDF.js; el archivo final se construye copiando páginas con pdf-lib, conservando texto y gráficos sin convertirlos a imágenes.
+## Privacidad, límites y compatibilidad
 
-Dividir extrae páginas a un único PDF (no crea un ZIP por rangos). No incluye PDF a Word/Excel ni OCR. No promete conservar estructuras a nivel de documento, formularios interactivos, marcadores, adjuntos o firmas digitales; validar documentos con estos elementos. Las ediciones invalidan las firmas digitales existentes.
+- Los archivos se procesan en memoria, sin carga a API, almacenamiento persistente ni analítica de documentos.
+- Límite inicial: 50 MB y 300 páginas por sesión, sujeto a la memoria disponible.
+- Se rechazan PDFs cifrados y se presentan errores de lectura.
+- La extracción de rangos genera un PDF, no un ZIP separado por cada rango.
+- No incluye OCR ni conversión a Word o Excel.
+- No se garantiza preservar marcadores, adjuntos, formularios interactivos ni firmas digitales. Modificar un PDF firmado puede invalidar su firma.
 
-## Dependencias
+Estas condiciones describen el diseño previsto del proyecto; comprueba el funcionamiento en tu navegador y con tus documentos antes de tratar resultados como definitivos.
 
-- pdf-lib (MIT): manipulación de páginas.
-- PDF.js/pdfjs-dist (Apache-2.0): miniaturas.
-- Vite (MIT): compilación.
+## Dependencias principales
 
-Conservar avisos y licencias de dependencias al redistribuir. El nombre es provisional.
+- [pdf-lib](https://pdf-lib.js.org/): manipulación de archivos PDF (MIT).
+- [PDF.js](https://mozilla.github.io/pdf.js/): visualización de PDF (Apache-2.0).
+- [Vite](https://vite.dev/): servidor de desarrollo y compilación (MIT).
+
+Respeta los avisos de licencia de las dependencias al distribuir compilaciones.
